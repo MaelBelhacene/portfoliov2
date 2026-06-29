@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "title": "Mael Belhacene — Cybersecurity, GRC & Secure Development",
+    "description": "Security assistant (GRC, EDR/XDR, GDPR/ANSSI) and secure developer. Portfolio of Mael Belhacene, aspiring cybersecurity engineer.",
+    "ogTitle": "Mael Belhacene — Cybersecurity, GRC & Secure Dev",
+    "ogDescription": "Security assistant (GRC, EDR/XDR, GDPR/ANSSI) and secure developer. Grenoble, France."
+  },
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "skills": "Skills",
+    "tools": "Tools",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "contact": "Contact",
+    "downloadCv": "CV",
+    "langToggle": "FR",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "prompt": "whoami",
+    "name": "Mael Belhacene",
+    "handle": "ghst.sec",
+    "role": "Cybersecurity · GRC · Secure Development",
+    "location": "Grenoble, France",
+    "typingLine": "I align security with reality: governance, compliance, and operational defense.",
+    "downloadCv": "Download CV",
+    "contact": "Get in touch",
+    "scrollHint": "↓ scroll"
+  },
+  "about": {
+    "sectionCmd": "cat wh0am1.txt",
+    "sectionTitle": "About",
+    "p1": "IT Security Assistant at DOMPLUS Groupe (work-study) and student in a Bachelor's in Systems & Network Administration at CESI, I'm building a dual-skill profile: cybersecurity and IT infrastructure management.",
+    "p2": "I started in development (lead developer on internal projects) before moving into security, which gives me a hands-on grasp of both worlds: I know what a developer can break, and how a system gets hardened.",
+    "p3": "Proactive by nature, I focus on the continuous improvement of internal processes with a pragmatic approach to technical and organizational challenges.",
+    "p4": "Goal: pursue a Master's in IS Infrastructure & Cybersecurity Management, to grow as a cybersecurity engineer."
+  },
+  "services": {
+    "sectionCmd": "cat s3rv1c3s.cfg",
+    "sectionTitle": "Services",
+    "items": [
+      {
+        "index": "01",
+        "title": "Governance, Risk & Compliance (GRC)",
+        "description": "Enforcement of internal (ISSP) and external (GDPR) policies, aligned with CNIL and ANSSI frameworks. Participation in security committees and third-party risk management (vendor monitoring and control)."
+      },
+      {
+        "index": "02",
+        "title": "Operational security & defense",
+        "description": "Rollout of defensive measures (EDR/XDR), system hardening, access and attack-surface management. Incident handling in direct coordination with the Orange Cyberdéfense SOC."
+      },
+      {
+        "index": "03",
+        "title": "Awareness & the human factor",
+        "description": "Designing and running awareness sessions, managing phishing campaigns to strengthen internal vigilance."
+      },
+      {
+        "index": "04",
+        "title": "Secure development",
+        "description": "Building web applications (Laravel, Node.js) with a security-by-design approach, API integration and workflow automation."
+      }
+    ]
+  },
+  "skills": {
+    "sectionCmd": "echo $sk1lls",
+    "sectionTitle": "Skills",
+    "pillars": [
+      {
+        "title": "Cybersecurity",
+        "comment": "// GRC · Blue Team · Compliance",
+        "items": [
+          "GRC (ISSP, GDPR, CNIL/ANSSI)",
+          "EDR/XDR",
+          "Incident handling",
+          "Third-party risk",
+          "Awareness & phishing",
+          "Internal audit",
+          "Penetration testing (basics)"
+        ]
+      },
+      {
+        "title": "Infrastructure & Networks",
+        "comment": "// Systems · Hardening · AD",
+        "items": [
+          "Systems administration",
+          "High availability",
+          "Hardening",
+          "Access management",
+          "Active Directory / GPO",
+          "Packet Tracer",
+          "LAMP administration"
+        ]
+      },
+      {
+        "title": "Development",
+        "comment": "// Security by Design",
+        "items": [
+          "Laravel (PHP)",
+          "Node.js",
+          "MySQL",
+          "REST API (EasyRedmine)",
+          "GitLab",
+          "Security by design"
+        ]
+      }
+    ]
+  },
+  "tools": {
+    "sectionCmd": "./t00ls.sh",
+    "sectionTitle": "Technologies & frameworks",
+    "items": [
+      "Sekoia XDR",
+      "EDR/XDR",
+      "SOC Orange Cyberdéfense",
+      "GDPR",
+      "CNIL / ANSSI",
+      "Sage X3",
+      "Laravel",
+      "Node.js",
+      "MySQL",
+      "GitLab",
+      "Packet Tracer",
+      "LAMP"
+    ]
+  },
+  "experience": {
+    "sectionCmd": "tail -f xp3r13nc3.log",
+    "sectionTitle": "Experience",
+    "jobs": [
+      {
+        "title": "IT Security Assistant",
+        "company": "DOMPLUS Groupe",
+        "type": "work-study",
+        "period": "Jan 2026 → present",
+        "current": true,
+        "description": "Ensuring compliance and security posture (GRC). Enforcing ISSP/GDPR policies (CNIL, ANSSI), taking part in security committees and vendor control, running awareness and phishing campaigns, leading the EDR/XDR rollout, acting as IT point of contact and coordinating with the Orange Cyberdéfense SOC."
+      },
+      {
+        "title": "IT Infrastructure & Security Administrator",
+        "company": "DOMPLUS Groupe",
+        "type": "",
+        "period": "Sep 2025 → Jan 2026",
+        "current": false,
+        "description": "System operations and hardening. Improving stability and high availability, deploying secured solutions, managing access and reducing the attack surface. Transition toward governance missions after mastering the technical foundations."
+      },
+      {
+        "title": "Project & Application Manager",
+        "company": "DOMPLUS Groupe",
+        "type": "",
+        "period": "Jul 2023 → Aug 2025",
+        "current": false,
+        "description": "Sage X3 ERP rollout (report design, data migration, critical modules). Security-by-design Laravel/Node.js web apps. Built a ticketing platform from scratch, integrated via API (EasyRedmine). Owned the software lifecycle, from requirements to production."
+      },
+      {
+        "title": "IT & Cloud Technician",
+        "company": "PROWEBCE",
+        "type": "internship",
+        "period": "Jan 2023 → Feb 2023",
+        "current": false,
+        "description": "Cloud Hosting team. SSL certificate renewal process, full IT asset inventory, exposure to hosting and availability challenges (AWS)."
+      }
+    ]
+  },
+  "education": {
+    "sectionCmd": "cat f0rm4t10n.md",
+    "sectionTitle": "Education",
+    "degrees": [
+      {
+        "title": "Bachelor's in Systems & Network Administration",
+        "school": "CESI",
+        "period": "2025 → 2026 (ongoing)",
+        "detail": "Final thesis: Sekoia XDR deployment at DOMPLUS. Network administration, Packet Tracer, and more."
+      },
+      {
+        "title": "Two-year degree — Computer Programming & Software Development",
+        "school": "CESI",
+        "period": "2023 → 2025",
+        "detail": "Passed · 120 ECTS credits. PHP frameworks, LAMP administration, and more."
+      }
+    ],
+    "certsTitle": "Certifications",
+    "certsPlaceholder": "[TO BE COMPLETED]",
+    "certsNote": "Intentionally left empty — will be filled once a certification is obtained."
+  },
+  "projects": {
+    "sectionCmd": "./pr0j3ts.exe",
+    "sectionTitle": "Projects",
+    "items": [
+      {
+        "title": "Sekoia XDR deployment @ DOMPLUS",
+        "description": "The subject of my final thesis: selecting, integrating and operating an XDR solution to strengthen detection and response within DOMPLUS Groupe.",
+        "tags": ["XDR", "Sekoia", "Thesis", "Blue Team"]
+      },
+      {
+        "title": "Ticketing platform built from scratch",
+        "description": "Laravel app integrated with EasyRedmine via REST API, with automatic subtask generation and HR/IT workflow automation.",
+        "tags": ["Laravel", "REST API", "EasyRedmine", "PHP"]
+      },
+      {
+        "title": "Sage X3 ERP rollout",
+        "description": "Contributed to the implementation: report design, data migration, critical business module configuration.",
+        "tags": ["Sage X3", "ERP", "Data migration"]
+      }
+    ]
+  },
+  "contact": {
+    "sectionCmd": "nc -lv c0nt4ct.init",
+    "sectionTitle": "Contact",
+    "tagline": "Let's join forces.",
+    "description": "A project, a security need, a work-study/internship opportunity, or just a question? Drop me a line.",
+    "nameLabel": "Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "john@example.com",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Opportunity / Project / Question",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Hi Mael, ...",
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "successTitle": "Message sent!",
+    "successMessage": "Thank you for your message. I'll get back to you as soon as possible.",
+    "errorMessage": "Something went wrong. Please try again or reach out directly by email.",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "cvLabel": "Download CV",
+    "emailDisplay": "[TO BE COMPLETED]"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "built": "Built with Next.js & Tailwind CSS"
+  }
+}

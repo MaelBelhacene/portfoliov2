@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "title": "Mael Belhacene — Cybersécurité, GRC & Développement sécurisé",
+    "description": "Assistant sécurité (GRC, EDR/XDR, RGPD/ANSSI) et développeur sécurisé. Portfolio de Mael Belhacene, futur ingénieur cybersécurité.",
+    "ogTitle": "Mael Belhacene — Cybersécurité, GRC & Dev sécurisé",
+    "ogDescription": "Assistant sécurité (GRC, EDR/XDR, RGPD/ANSSI) et développeur sécurisé. Grenoble, France."
+  },
+  "nav": {
+    "about": "À propos",
+    "services": "Services",
+    "skills": "Compétences",
+    "tools": "Outils",
+    "experience": "Expérience",
+    "education": "Formation",
+    "projects": "Projets",
+    "contact": "Contact",
+    "downloadCv": "CV",
+    "langToggle": "EN",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "hero": {
+    "prompt": "whoami",
+    "name": "Mael Belhacene",
+    "handle": "ghst.sec",
+    "role": "Cybersécurité · GRC · Développement sécurisé",
+    "location": "Grenoble, France",
+    "typingLine": "J'aligne la sécurité sur le réel : gouvernance, conformité et défense opérationnelle.",
+    "downloadCv": "Télécharger le CV",
+    "contact": "Me contacter",
+    "scrollHint": "↓ défiler"
+  },
+  "about": {
+    "sectionCmd": "cat wh0am1.txt",
+    "sectionTitle": "À propos",
+    "p1": "Assistant en sécurité informatique chez DOMPLUS Groupe (en alternance) et étudiant en Bachelor Administrateur Systèmes & Réseaux au CESI, je construis un profil à double compétence : cybersécurité et gestion des infrastructures IT.",
+    "p2": "Mon parcours est passé par le développement (lead developer sur des projets internes) avant de basculer vers la sécurité, ce qui me donne une lecture concrète des deux mondes : je sais ce qu'un dev peut casser, et comment un système se durcit.",
+    "p3": "Force de proposition, je m'investis dans l'amélioration continue des processus internes avec une approche pragmatique des problématiques techniques et organisationnelles.",
+    "p4": "Objectif : poursuivre vers un Master Manager en Infrastructures et Cybersécurité des Systèmes d'Information, pour évoluer en tant qu'ingénieur cybersécurité."
+  },
+  "services": {
+    "sectionCmd": "cat s3rv1c3s.cfg",
+    "sectionTitle": "Services",
+    "items": [
+      {
+        "index": "01",
+        "title": "Gouvernance, Risques & Conformité (GRC)",
+        "description": "Application des politiques internes (PSSI) et externes (RGPD), en alignement avec les référentiels CNIL et ANSSI. Participation aux comités sécurité et maîtrise du risque tiers (suivi et contrôle des sous-traitants)."
+      },
+      {
+        "index": "02",
+        "title": "Sécurité opérationnelle & défense",
+        "description": "Pilotage du déploiement de mesures défensives (EDR/XDR), durcissement système, gestion des accès et de la surface d'attaque. Gestion des incidents en coordination directe avec le SOC Orange Cyberdéfense."
+      },
+      {
+        "index": "03",
+        "title": "Sensibilisation & facteur humain",
+        "description": "Conception et animation de sessions de sensibilisation, pilotage de campagnes de phishing pour renforcer la vigilance interne."
+      },
+      {
+        "index": "04",
+        "title": "Développement sécurisé",
+        "description": "Conception d'applications web (Laravel, Node.js) en « security by design », interfaçage via API et automatisation des flux."
+      }
+    ]
+  },
+  "skills": {
+    "sectionCmd": "echo $sk1lls",
+    "sectionTitle": "Compétences",
+    "pillars": [
+      {
+        "title": "Cybersécurité",
+        "comment": "// GRC · Blue Team · Conformité",
+        "items": [
+          "GRC (PSSI, RGPD, CNIL/ANSSI)",
+          "EDR/XDR",
+          "Gestion des incidents",
+          "Risque tiers",
+          "Sensibilisation & phishing",
+          "Audit interne",
+          "Test d'intrusion (notions)"
+        ]
+      },
+      {
+        "title": "Infrastructure & Réseaux",
+        "comment": "// Systèmes · Hardening · AD",
+        "items": [
+          "Administration systèmes",
+          "Haute disponibilité",
+          "Durcissement",
+          "Gestion des accès",
+          "Active Directory / GPO",
+          "Packet Tracer",
+          "Administration LAMP"
+        ]
+      },
+      {
+        "title": "Développement",
+        "comment": "// Security by Design",
+        "items": [
+          "Laravel (PHP)",
+          "Node.js",
+          "MySQL",
+          "API REST (EasyRedmine)",
+          "GitLab",
+          "Security by design"
+        ]
+      }
+    ]
+  },
+  "tools": {
+    "sectionCmd": "./t00ls.sh",
+    "sectionTitle": "Technologies & référentiels",
+    "items": [
+      "Sekoia XDR",
+      "EDR/XDR",
+      "SOC Orange Cyberdéfense",
+      "RGPD",
+      "CNIL / ANSSI",
+      "Sage X3",
+      "Laravel",
+      "Node.js",
+      "MySQL",
+      "GitLab",
+      "Packet Tracer",
+      "LAMP"
+    ]
+  },
+  "experience": {
+    "sectionCmd": "tail -f xp3r13nc3.log",
+    "sectionTitle": "Expérience",
+    "jobs": [
+      {
+        "title": "IT Security Assistant",
+        "company": "DOMPLUS Groupe",
+        "type": "alternance",
+        "period": "janv. 2026 → aujourd'hui",
+        "current": true,
+        "description": "Garantir la conformité et la posture de sécurité (GRC). Application des politiques PSSI/RGPD (CNIL, ANSSI), participation aux comités sécurité et au contrôle des sous-traitants, animation de la sensibilisation et des campagnes de phishing, pilotage du déploiement EDR/XDR, point de contact IT et coordination avec le SOC Orange Cyberdéfense."
+      },
+      {
+        "title": "IT Infrastructure & Security Administrator",
+        "company": "DOMPLUS Groupe",
+        "type": "",
+        "period": "sept. 2025 → janv. 2026",
+        "current": false,
+        "description": "Maintien en condition opérationnelle et durcissement système. Optimisation de la stabilité et de la haute disponibilité, déploiement de solutions sécurisées, gestion des accès et réduction de la surface d'attaque. Transition vers des missions de gouvernance après maîtrise des socles techniques."
+      },
+      {
+        "title": "Project & Application Manager",
+        "company": "DOMPLUS Groupe",
+        "type": "",
+        "period": "juil. 2023 → août 2025",
+        "current": false,
+        "description": "Déploiement de l'ERP Sage X3 (conception d'états, migration de données, modules critiques). Conception d'applications web Laravel/Node.js « security by design ». Développement « from scratch » d'une plateforme de ticketing interfacée via API (EasyRedmine). Pilotage du cycle de vie logiciel, du besoin à la production."
+      },
+      {
+        "title": "IT & Cloud Technician",
+        "company": "PROWEBCE",
+        "type": "stage",
+        "period": "janv. 2023 → févr. 2023",
+        "current": false,
+        "description": "Équipe Hébergement Cloud. Procédure de renouvellement des certificats SSL, inventaire complet du parc informatique, découverte des enjeux d'hébergement et de disponibilité (AWS)."
+      }
+    ]
+  },
+  "education": {
+    "sectionCmd": "cat f0rm4t10n.md",
+    "sectionTitle": "Formation",
+    "degrees": [
+      {
+        "title": "Bachelor Administrateur Systèmes & Réseaux",
+        "school": "CESI",
+        "period": "2025 → 2026 (en cours)",
+        "detail": "Mémoire de fin d'études : déploiement de Sekoia XDR chez DOMPLUS. Administration réseau, Packet Tracer, et plus."
+      },
+      {
+        "title": "Titre Bac+2 — Développement informatique & logiciel",
+        "school": "CESI",
+        "period": "2023 → 2025",
+        "detail": "Admis · 120 crédits ECTS. Frameworks PHP, administration LAMP, et plus."
+      }
+    ],
+    "certsTitle": "Certifications",
+    "certsPlaceholder": "[À COMPLÉTER]",
+    "certsNote": "Section intentionnellement vide — à renseigner dès l'obtention d'une certification."
+  },
+  "projects": {
+    "sectionCmd": "./pr0j3ts.exe",
+    "sectionTitle": "Projets",
+    "items": [
+      {
+        "title": "Déploiement Sekoia XDR @ DOMPLUS",
+        "description": "Sujet de mon mémoire de fin d'études : choix, intégration et exploitation d'une solution XDR pour renforcer la détection et la réponse au sein de DOMPLUS Groupe.",
+        "tags": ["XDR", "Sekoia", "Mémoire", "Blue Team"]
+      },
+      {
+        "title": "Plateforme de ticketing from scratch",
+        "description": "Application Laravel interfacée à EasyRedmine via API REST, avec génération automatique de sous-tâches et automatisation des flux RH/IT.",
+        "tags": ["Laravel", "API REST", "EasyRedmine", "PHP"]
+      },
+      {
+        "title": "Déploiement ERP Sage X3",
+        "description": "Participation à la mise en place : conception d'états de reporting, migration de données, configuration des modules critiques métier.",
+        "tags": ["Sage X3", "ERP", "Migration de données"]
+      }
+    ]
+  },
+  "contact": {
+    "sectionCmd": "nc -lv c0nt4ct.init",
+    "sectionTitle": "Contact",
+    "tagline": "Unissons nos forces.",
+    "description": "Un projet, un besoin en sécurité, une opportunité d'alternance/stage ou une simple question ? Écris-moi.",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Jean Dupont",
+    "emailLabel": "Email",
+    "emailPlaceholder": "jean@exemple.fr",
+    "subjectLabel": "Sujet",
+    "subjectPlaceholder": "Opportunité / Projet / Question",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Bonjour Mael, ...",
+    "sendButton": "Envoyer",
+    "sending": "Envoi en cours...",
+    "successTitle": "Message envoyé !",
+    "successMessage": "Merci pour votre message. Je vous répondrai dans les meilleurs délais.",
+    "errorMessage": "Une erreur est survenue. Réessayez ou contactez-moi directement par email.",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "cvLabel": "Télécharger le CV",
+    "emailDisplay": "[À COMPLÉTER]"
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "built": "Fait avec Next.js & Tailwind CSS"
+  }
+}
