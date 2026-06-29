@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 type Job = {
   title: string;
+  subtitle?: string;
   company: string;
   type: string;
   period: string;
@@ -64,6 +65,11 @@ export async function Experience() {
                 <h3 className="font-mono font-bold text-terminal-text text-base md:text-lg mb-0.5">
                   {job.title}
                 </h3>
+                {job.subtitle && (
+                  <div className="font-mono text-terminal-green text-xs mb-1 opacity-80">
+                    ↳ {job.subtitle}
+                  </div>
+                )}
                 <div className="font-mono text-terminal-amber text-sm mb-3">
                   {job.company}
                   {job.type && (

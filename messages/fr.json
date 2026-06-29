@@ -91,19 +91,21 @@
           "Gestion des accès",
           "Active Directory / GPO",
           "Packet Tracer",
-          "Administration LAMP"
+          "Serveurs web",
+          "Contribution PCA/PRA"
         ]
       },
       {
         "title": "Développement",
-        "comment": "// Security by Design",
+        "comment": "// Security by Design · Agile",
         "items": [
           "Laravel (PHP)",
           "Node.js",
           "MySQL",
-          "API REST (EasyRedmine)",
+          "API REST",
           "GitLab",
-          "Security by design"
+          "Security by design",
+          "Gestion de projet (Agile/Scrum)"
         ]
       }
     ]
@@ -132,6 +134,7 @@
     "jobs": [
       {
         "title": "IT Security Assistant",
+        "subtitle": "Chef de projet sécurité",
         "company": "DOMPLUS Groupe",
         "type": "alternance",
         "period": "janv. 2026 → aujourd'hui",
@@ -183,7 +186,9 @@
     ],
     "certsTitle": "Certifications",
     "certsPlaceholder": "[À COMPLÉTER]",
-    "certsNote": "Section intentionnellement vide — à renseigner dès l'obtention d'une certification."
+    "certsNote": "Section intentionnellement vide — à renseigner dès l'obtention d'une certification.",
+    "methodsTitle": "Méthodologies & gestion de projet",
+    "methods": ["Agile / Scrum", "Sprint planning", "Backlog & user stories", "Kanban", "Gestion de projet sécurité"]
   },
   "projects": {
     "sectionCmd": "./pr0j3ts.exe",

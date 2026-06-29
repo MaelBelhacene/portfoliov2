@@ -37,6 +37,23 @@ export async function Education() {
           ))}
         </div>
 
+        {/* Methodologies */}
+        <div className="border border-terminal-border p-6 mb-4">
+          <h3 className="font-mono font-bold text-terminal-text text-base mb-4">
+            {t('methodsTitle')}
+          </h3>
+          <ul className="flex flex-wrap gap-2">
+            {(t.raw('methods') as string[]).map((m) => (
+              <li
+                key={m}
+                className="font-mono text-xs px-3 py-1 border border-terminal-green text-terminal-green"
+              >
+                {m}
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* Certifications placeholder */}
         <div className="border border-dashed border-terminal-border p-6">
           <h3 className="font-mono font-bold text-terminal-muted text-base mb-2">

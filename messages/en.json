@@ -91,19 +91,21 @@
           "Access management",
           "Active Directory / GPO",
           "Packet Tracer",
-          "LAMP administration"
+          "Web servers",
+          "BCP/DRP contribution"
         ]
       },
       {
         "title": "Development",
-        "comment": "// Security by Design",
+        "comment": "// Security by Design · Agile",
         "items": [
           "Laravel (PHP)",
           "Node.js",
           "MySQL",
-          "REST API (EasyRedmine)",
+          "REST API",
           "GitLab",
-          "Security by design"
+          "Security by design",
+          "Agile project management (Scrum)"
         ]
       }
     ]
@@ -132,6 +134,7 @@
     "jobs": [
       {
         "title": "IT Security Assistant",
+        "subtitle": "Security Project Manager",
         "company": "DOMPLUS Groupe",
         "type": "work-study",
         "period": "Jan 2026 → present",
@@ -183,7 +186,9 @@
     ],
     "certsTitle": "Certifications",
     "certsPlaceholder": "[TO BE COMPLETED]",
-    "certsNote": "Intentionally left empty — will be filled once a certification is obtained."
+    "certsNote": "Intentionally left empty — will be filled once a certification is obtained.",
+    "methodsTitle": "Methodologies & project management",
+    "methods": ["Agile / Scrum", "Sprint planning", "Backlog & user stories", "Kanban", "Security project management"]
   },
   "projects": {
     "sectionCmd": "./pr0j3ts.exe",
