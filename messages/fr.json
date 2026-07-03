@@ -17,11 +17,13 @@
     "downloadCv": "CV",
     "langToggle": "EN",
     "openMenu": "Ouvrir le menu",
-    "closeMenu": "Fermer le menu"
+    "closeMenu": "Fermer le menu",
+    "skipToContent": "Aller au contenu"
   },
   "hero": {
     "prompt": "whoami",
     "name": "Mael Belhacene",
+    "title": "Ingénieur en cybersécurité",
     "handle": "ghst.sec",
     "role": "Cybersécurité · GRC · Développement sécurisé",
     "location": "Grenoble, France",
@@ -237,5 +239,10 @@
   "footer": {
     "rights": "Tous droits réservés.",
     "built": "Fait avec Next.js & Tailwind CSS"
+  },
+  "notFound": {
+    "cmd": "cd /page-introuvable",
+    "title": "command not found",
+    "hint": "Cette page n'existe pas (ou a été chiffrée). Retour au terminal principal :"
   }
 }

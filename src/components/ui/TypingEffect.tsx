@@ -1,54 +1,88 @@
 'use client';
 
-import { useEffect, useReducer } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useReducedMotion } from './useReducedMotion';
 
-type State = { displayed: string; done: boolean };
-type Action =
-  | { type: 'CHAR'; char: string }
-  | { type: 'DONE' }
-  | { type: 'SKIP'; text: string };
+export type TypingMode = 'pending' | 'playing' | 'done';
 
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'CHAR': return { ...state, displayed: state.displayed + action.char };
-    case 'DONE': return { ...state, done: true };
-    case 'SKIP': return { displayed: action.text, done: true };
-    default:     return state;
+/**
+ * Effet machine à écrire, orchestrable :
+ * - `pending` : rien n'est affiché (la ligne attend son tour)
+ * - `playing` : frappe progressive, `onDone` appelé à la fin
+ * - `done`    : texte complet immédiat
+ * En reduced-motion, le texte est toujours complet et `onDone` est notifié.
+ */
+export function TypingEffect({
+  text,
+  speed = 35,
+  mode = 'playing',
+  cursor = true,
+  onDone,
+}: {
+  text: string;
+  speed?: number;
+  mode?: TypingMode;
+  cursor?: boolean;
+  onDone?: () => void;
+}) {
+  const reduced = useReducedMotion();
+  const [typed, setTyped] = useState(0);
+
+  // Réinitialise la frappe si le texte change (pattern « adjust state during render »)
+  const [prevText, setPrevText] = useState(text);
+  if (prevText !== text) {
+    setPrevText(text);
+    setTyped(0);
   }
-}
 
-export function TypingEffect({ text, speed = 35 }: { text: string; speed?: number }) {
-  const [{ displayed, done }, dispatch] = useReducer(reducer, { displayed: '', done: false });
+  const onDoneRef = useRef(onDone);
+  useEffect(() => {
+    onDoneRef.current = onDone;
+  });
+
+  const playing = mode === 'playing' && !reduced;
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      dispatch({ type: 'SKIP', text });
-      return;
-    }
+    if (!playing) return;
 
     let i = 0;
     const timer = setInterval(() => {
-      if (i < text.length) {
-        dispatch({ type: 'CHAR', char: text[i] });
-        i++;
-      } else {
-        dispatch({ type: 'DONE' });
+      i += 1;
+      setTyped(i);
+      if (i >= text.length) {
         clearInterval(timer);
+        onDoneRef.current?.();
       }
     }, speed);
 
     return () => clearInterval(timer);
-  }, [text, speed]);
+  }, [text, speed, playing]);
+
+  // Reduced-motion : la séquence parente doit quand même avancer
+  useEffect(() => {
+    if (mode !== 'playing' || !reduced) return;
+    const t = setTimeout(() => onDoneRef.current?.(), 0);
+    return () => clearTimeout(t);
+  }, [mode, reduced]);
+
+  const count =
+    mode === 'pending' ? 0
+    : mode === 'done' || reduced ? text.length
+    : Math.min(typed, text.length);
+
+  const done = mode === 'done' || reduced || count >= text.length;
 
   return (
     <span aria-label={text}>
-      <span aria-hidden="true">{displayed}</span>
-      <span
-        aria-hidden="true"
-        className={`inline-block w-0.5 h-[1em] bg-terminal-cursor align-middle ml-0.5 ${
-          done ? 'cursor-blink' : 'opacity-100'
-        }`}
-      />
+      <span aria-hidden="true">{text.slice(0, count)}</span>
+      {cursor && mode !== 'pending' && (
+        <span
+          aria-hidden="true"
+          className={`ml-0.5 inline-block h-[1em] w-0.5 bg-terminal-cursor align-middle ${
+            done ? 'cursor-blink' : 'opacity-100'
+          }`}
+        />
+      )}
     </span>
   );
 }

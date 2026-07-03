@@ -1,4 +1,6 @@
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import { Section } from '@/components/ui/Section';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 
 type Job = {
   title: string;
@@ -10,80 +12,71 @@ type Job = {
   description: string;
 };
 
-export async function Experience() {
-  const t = await getTranslations('experience');
+/** Timeline façon `git log --graph`. */
+export function Experience() {
+  const t = useTranslations('experience');
   const jobs = t.raw('jobs') as Job[];
 
   return (
-    <section id="xp3r13nc3" className="py-24 px-4 bg-terminal-surface">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-12">
-          <div className="flex items-center gap-2 font-mono text-sm text-terminal-muted mb-2">
-            <span className="text-terminal-green">$</span>
-            <span>{t('sectionCmd')}</span>
-          </div>
-          <h2 className="font-mono font-bold text-2xl md:text-3xl text-terminal-text">
-            {t('sectionTitle')}
-          </h2>
-          <div className="mt-3 w-12 h-0.5 bg-terminal-green" aria-hidden="true" />
-        </header>
+    <Section id="xp3r13nc3" tinted>
+      <SectionHeader cmd={t('sectionCmd')} title={t('sectionTitle')} index="05" />
 
-        {/* Timeline */}
-        <ol className="relative" aria-label={t('sectionTitle')}>
-          {/* Vertical line */}
-          <div
-            className="absolute left-3 top-2 bottom-8 w-px bg-terminal-border"
-            aria-hidden="true"
-          />
+      <ol className="relative" aria-label={t('sectionTitle')}>
+        {/* Ligne de commits */}
+        <div
+          className="absolute top-2 bottom-8 left-3 w-px bg-gradient-to-b from-terminal-green/60 via-terminal-border to-terminal-border"
+          aria-hidden="true"
+        />
 
-          {jobs.map((job, i) => (
-            <li key={i} className="relative pl-12 pb-12 last:pb-0">
-              {/* Dot */}
+        {jobs.map((job, i) => (
+          <li key={i} className="group relative pb-12 pl-12 last:pb-0">
+            {/* Commit */}
+            <div
+              aria-hidden="true"
+              className={`absolute top-1 left-0 flex h-7 w-7 items-center justify-center rounded-full border-2 bg-terminal-bg transition-shadow ${
+                job.current
+                  ? 'border-terminal-green shadow-[0_0_12px_rgba(0,255,65,0.4)]'
+                  : 'border-terminal-border group-hover:border-terminal-border-bright'
+              }`}
+            >
               <div
-                aria-hidden="true"
-                className={`absolute left-0 top-1 w-7 h-7 rounded-full border-2 flex items-center justify-center bg-terminal-bg ${
-                  job.current
-                    ? 'border-terminal-green'
-                    : 'border-terminal-border'
+                className={`h-2 w-2 rounded-full ${
+                  job.current ? 'animate-pulse-dot bg-terminal-green' : 'bg-terminal-border'
                 }`}
-              >
-                <div
-                  className={`w-2 h-2 rounded-full ${
-                    job.current ? 'bg-terminal-green' : 'bg-terminal-border'
-                  }`}
-                />
-              </div>
+              />
+            </div>
 
-              {/* Content */}
-              <div>
-                <div className="font-mono text-terminal-green text-xs mb-1">
-                  {job.period}
-                  {job.current && (
-                    <span className="ml-2 text-terminal-green opacity-70 animate-pulse">●</span>
-                  )}
-                </div>
-                <h3 className="font-mono font-bold text-terminal-text text-base md:text-lg mb-0.5">
-                  {job.title}
-                </h3>
-                {job.subtitle && (
-                  <div className="font-mono text-terminal-green text-xs mb-1 opacity-80">
-                    ↳ {job.subtitle}
-                  </div>
+            <div>
+              <div className="mb-1 flex flex-wrap items-center gap-2 font-mono text-xs">
+                <span className="text-terminal-green">{job.period}</span>
+                {job.current && (
+                  <span
+                    className="glow-green border border-terminal-green/40 px-1.5 py-0.5 text-terminal-green"
+                    aria-hidden="true"
+                  >
+                    HEAD → now
+                  </span>
                 )}
-                <div className="font-mono text-terminal-amber text-sm mb-3">
-                  {job.company}
-                  {job.type && (
-                    <span className="text-terminal-muted"> · {job.type}</span>
-                  )}
-                </div>
-                <p className="font-mono text-terminal-muted text-sm leading-relaxed max-w-2xl">
-                  {job.description}
-                </p>
               </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
+              <h3 className="mb-0.5 font-mono text-base font-bold text-terminal-bright md:text-lg">
+                {job.title}
+              </h3>
+              {job.subtitle && (
+                <div className="mb-1 font-mono text-xs text-terminal-green opacity-80">
+                  ↳ {job.subtitle}
+                </div>
+              )}
+              <div className="mb-3 font-mono text-sm">
+                <span className="glow-amber text-terminal-amber">{job.company}</span>
+                {job.type && <span className="text-terminal-muted"> · {job.type}</span>}
+              </div>
+              <p className="max-w-2xl font-mono text-sm leading-relaxed text-terminal-muted">
+                {job.description}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Section>
   );
 }
