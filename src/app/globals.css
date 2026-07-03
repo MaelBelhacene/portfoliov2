@@ -1,27 +1,32 @@
 @import "tailwindcss";
 
-/* ── Terminal colour palette ──────────────────────────────────────────────── */
+/* ── Design tokens — palette terminal phosphore ───────────────────────────── */
 @theme {
-  --color-terminal-bg:        #000000;
-  --color-terminal-surface:   #0a0a0a;
-  --color-terminal-border:    #1a1a1a;
-  --color-terminal-green:     #00ff41;
-  --color-terminal-green-dim: #00cc33;
-  --color-terminal-amber:     #ffb300;
-  --color-terminal-amber-dim: #cc8800;
-  --color-terminal-text:      #c0c0c0;
-  --color-terminal-muted:     #888888;
-  --color-terminal-cursor:    #00ff41;
+  --color-terminal-bg:            #000000;
+  --color-terminal-surface:       #0a0a0a;
+  --color-terminal-raised:        #101010;
+  --color-terminal-border:        #1a1a1a;
+  --color-terminal-border-bright: #2c2c2c;
+  --color-terminal-green:         #00ff41;
+  --color-terminal-green-dim:     #00cc33;
+  --color-terminal-amber:         #ffb300;
+  --color-terminal-amber-dim:     #cc8800;
+  --color-terminal-text:          #c0c0c0;
+  --color-terminal-bright:        #ececec;
+  --color-terminal-muted:         #888888;
+  --color-terminal-faint:         #4a4a4a;
+  --color-terminal-cursor:        #00ff41;
 
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", "Courier New", monospace;
 
   --animate-blink: blink 1s step-start infinite;
   --animate-fade-up: fadeUp 0.4s ease forwards;
+  --animate-pulse-dot: pulseDot 2s ease-in-out infinite;
 }
 
 /* ── Keyframes ────────────────────────────────────────────────────────────── */
 @keyframes blink {
-  0%, 49% { opacity: 1; }
+  0%, 49%   { opacity: 1; }
   50%, 100% { opacity: 0; }
 }
 
@@ -30,7 +35,12 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Global base ──────────────────────────────────────────────────────────── */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 6px rgba(0, 255, 65, 0.8); }
+  50%      { opacity: 0.4; box-shadow: 0 0 2px rgba(0, 255, 65, 0.3); }
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
@@ -43,34 +53,103 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Terminal cursor ──────────────────────────────────────────────────────── */
+/* ── Atmosphère CRT : scanlines + vignette (décoratif, très subtil) ───────── */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.crt-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+/* ── Curseur de terminal ──────────────────────────────────────────────────── */
 .cursor-blink {
   animation: blink 1s step-start infinite;
 }
 
-/* ── Custom scrollbar ─────────────────────────────────────────────────────── */
+/* ── Halo phosphore ───────────────────────────────────────────────────────── */
+.glow-green {
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.55), 0 0 28px rgba(0, 255, 65, 0.2);
+}
+
+.glow-amber {
+  text-shadow: 0 0 10px rgba(255, 179, 0, 0.35);
+}
+
+.glow-line {
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+}
+
+/* ── Révélation au scroll (pilotée par IntersectionObserver) ──────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Scrollbar & sélection ────────────────────────────────────────────────── */
 ::-webkit-scrollbar        { width: 6px; }
 ::-webkit-scrollbar-track  { background: var(--color-terminal-bg); }
 ::-webkit-scrollbar-thumb  { background: var(--color-terminal-border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-terminal-muted); }
 
-/* ── Text selection ───────────────────────────────────────────────────────── */
 ::selection {
   background-color: var(--color-terminal-green);
   color: var(--color-terminal-bg);
 }
 
-/* ── Hero grid background ─────────────────────────────────────────────────── */
+/* ── Fond quadrillé du hero, fondu vers le bas ────────────────────────────── */
 .hero-grid {
   background-image:
-    linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(0, 255, 65, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
 
-/* ── Respect reduced motion ───────────────────────────────────────────────── */
+/* ── Lien d'évitement (a11y) ──────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 200;
+  padding: 0.5rem 1rem;
+  background: var(--color-terminal-green);
+  color: var(--color-terminal-bg);
+  font-size: 0.75rem;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+/* ── Reduced motion : tout doit rester lisible sans animation ─────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .cursor-blink { animation: none; opacity: 1; }
-  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

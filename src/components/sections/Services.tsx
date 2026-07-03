@@ -1,44 +1,35 @@
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import { Section } from '@/components/ui/Section';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 
 type ServiceItem = { index: string; title: string; description: string };
 
-export async function Services() {
-  const t = await getTranslations('services');
+export function Services() {
+  const t = useTranslations('services');
   const items = t.raw('items') as ServiceItem[];
 
   return (
-    <section id="s3rv1c3s" className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-12">
-          <div className="flex items-center gap-2 font-mono text-sm text-terminal-muted mb-2">
-            <span className="text-terminal-green">$</span>
-            <span>{t('sectionCmd')}</span>
-          </div>
-          <h2 className="font-mono font-bold text-2xl md:text-3xl text-terminal-text">
-            {t('sectionTitle')}
-          </h2>
-          <div className="mt-3 w-12 h-0.5 bg-terminal-green" aria-hidden="true" />
-        </header>
+    <Section id="s3rv1c3s">
+      <SectionHeader cmd={t('sectionCmd')} title={t('sectionTitle')} index="02" />
 
-        <div className="grid md:grid-cols-2 gap-4">
-          {items.map((item) => (
-            <article
-              key={item.index}
-              className="border border-terminal-border bg-terminal-surface p-6 hover:border-terminal-green transition-colors group"
-            >
-              <div className="font-mono text-terminal-green text-xs mb-3 opacity-60 group-hover:opacity-100 transition-opacity">
-                [{item.index}]
-              </div>
-              <h3 className="font-mono font-bold text-terminal-text text-base mb-3">
-                {item.title}
-              </h3>
-              <p className="font-mono text-terminal-muted text-sm leading-relaxed">
-                {item.description}
-              </p>
-            </article>
-          ))}
-        </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        {items.map((item) => (
+          <article
+            key={item.index}
+            className="group border border-terminal-border bg-terminal-surface p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-terminal-green hover:shadow-[0_0_32px_rgba(0,255,65,0.08)]"
+          >
+            <div className="mb-3 font-mono text-xs text-terminal-green opacity-60 transition-opacity group-hover:opacity-100">
+              [{item.index}]
+            </div>
+            <h3 className="mb-3 font-mono text-base font-bold text-terminal-bright">
+              {item.title}
+            </h3>
+            <p className="font-mono text-sm leading-relaxed text-terminal-muted">
+              {item.description}
+            </p>
+          </article>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }

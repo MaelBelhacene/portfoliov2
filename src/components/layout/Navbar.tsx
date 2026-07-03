@@ -24,40 +24,42 @@ export function Navbar() {
   const pathname = usePathname();
 
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active,   setActive]   = useState<SectionId>('');
 
-  // Navbar background on scroll
+  // Fond au scroll + barre de progression de lecture
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(total > 0 ? Math.min(window.scrollY / total, 1) : 0);
+    };
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on resize to desktop
+  // Ferme le menu mobile au passage desktop
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setMenuOpen(false); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // Active section tracking via IntersectionObserver
+  // Suivi de la section active
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        // Pick the entry that is intersecting; if multiple, the one closest to top wins
         const visible = entries
-          .filter((e) => e.isIntersecting)
+          .filter((entry) => entry.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         if (visible.length > 0) {
           setActive(visible[0].target.id as SectionId);
         }
       },
-      {
-        // Section is "active" once its top enters the upper 40 % of the viewport
-        rootMargin: '-56px 0px -60% 0px',
-        threshold: 0,
-      },
+      // Active dès que le haut de section entre dans les 40 % supérieurs du viewport
+      { rootMargin: '-56px 0px -60% 0px', threshold: 0 },
     );
 
     NAV_ITEMS.forEach(({ id }) => {
@@ -76,25 +78,32 @@ export function Navbar() {
   return (
     <nav
       aria-label="Navigation principale"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-terminal-bg/95 backdrop-blur-sm border-b border-terminal-border'
+          ? 'border-b border-terminal-border bg-terminal-bg/95 backdrop-blur-sm'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      {/* Barre de progression de scroll */}
+      <div
+        aria-hidden="true"
+        className="glow-line absolute top-0 left-0 h-px bg-terminal-green transition-[width] duration-150"
+        style={{ width: `${progress * 100}%` }}
+      />
+
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         {/* Logo */}
         <a
           href="#whoami"
           onClick={closeMenu}
-          className="font-mono text-sm text-terminal-green hover:text-terminal-green-dim transition-colors"
+          className="font-mono text-sm text-terminal-green transition-colors hover:text-terminal-green-dim"
         >
           <span className="text-terminal-muted">~/</span>ghst.sec
         </a>
 
-        {/* Desktop nav links */}
-        <ul className="hidden md:flex items-center gap-6 text-xs font-mono">
-          {NAV_ITEMS.map(({ href, key, id }) => {
+        {/* Liens desktop */}
+        <ul className="hidden items-center gap-5 font-mono text-xs md:flex">
+          {NAV_ITEMS.map(({ href, key, id }, i) => {
             const isActive = active === id;
             return (
               <li key={id}>
@@ -103,13 +112,17 @@ export function Navbar() {
                   aria-current={isActive ? 'location' : undefined}
                   className={`relative py-1 transition-colors ${
                     isActive
-                      ? 'text-terminal-green'
+                      ? 'glow-green text-terminal-green'
                       : 'text-terminal-muted hover:text-terminal-green'
                   }`}
                 >
+                  <span
+                    aria-hidden="true"
+                    className={`mr-1 ${isActive ? 'text-terminal-green/70' : 'text-terminal-faint'}`}
+                  >
+                    {String(i + 1).padStart(2, '0')}.
+                  </span>
                   {t(key as Parameters<typeof t>[0])}
-
-                  {/* Active indicator: glowing green underline */}
                   <span
                     aria-hidden="true"
                     className={`absolute -bottom-0.5 left-0 right-0 h-px transition-all duration-300 ${
@@ -124,33 +137,30 @@ export function Navbar() {
           })}
         </ul>
 
-        {/* Right controls */}
+        {/* Contrôles à droite */}
         <div className="flex items-center gap-3">
-          {/* Lang toggle */}
           <button
             type="button"
             onClick={switchLocale}
             aria-label={`Switch to ${locale === 'fr' ? 'English' : 'Français'}`}
-            className="font-mono text-xs px-2 py-1 border border-terminal-border text-terminal-muted hover:border-terminal-green hover:text-terminal-green transition-colors"
+            className="border border-terminal-border px-2 py-1 font-mono text-xs text-terminal-muted transition-colors hover:border-terminal-green hover:text-terminal-green"
           >
             {t('langToggle')}
           </button>
 
-          {/* CV download (desktop) */}
           <a
             href="/cv.pdf"
             download
-            className="hidden md:inline-flex font-mono text-xs px-3 py-1 border border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-black transition-colors"
+            className="hidden border border-terminal-green px-3 py-1 font-mono text-xs text-terminal-green transition-colors hover:bg-terminal-green hover:text-black md:inline-flex"
           >
             {t('downloadCv')}
           </a>
 
-          {/* Hamburger (mobile) */}
           <button
             type="button"
-            className="md:hidden text-terminal-muted hover:text-terminal-green transition-colors p-1"
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-expanded={menuOpen ? 'true' : 'false'}
+            className="p-1 text-terminal-muted transition-colors hover:text-terminal-green md:hidden"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
             aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
           >
             <span className="font-mono text-sm">{menuOpen ? '✕' : '☰'}</span>
@@ -158,9 +168,9 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Menu mobile */}
       {menuOpen && (
-        <div className="md:hidden bg-terminal-bg border-b border-terminal-border py-4 px-4">
+        <div className="border-b border-terminal-border bg-terminal-bg px-4 py-4 md:hidden">
           <ul className="flex flex-col gap-4">
             {NAV_ITEMS.map(({ href, key, id }) => {
               const isActive = active === id;
@@ -170,23 +180,16 @@ export function Navbar() {
                     href={href}
                     onClick={closeMenu}
                     aria-current={isActive ? 'location' : undefined}
-                    className={`font-mono text-sm flex items-center gap-2 transition-colors ${
+                    className={`flex items-center gap-2 font-mono text-sm transition-colors ${
                       isActive ? 'text-terminal-green' : 'text-terminal-muted hover:text-terminal-green'
                     }`}
                   >
-                    <span
-                      aria-hidden="true"
-                      className={`transition-colors ${
-                        isActive ? 'text-terminal-green' : 'text-terminal-muted'
-                      }`}
-                    >
-                      ›
-                    </span>
+                    <span aria-hidden="true">›</span>
                     {t(key as Parameters<typeof t>[0])}
                     {isActive && (
                       <span
                         aria-hidden="true"
-                        className="ml-auto w-1.5 h-1.5 rounded-full bg-terminal-green shadow-[0_0_6px_#00ff41]"
+                        className="animate-pulse-dot ml-auto h-1.5 w-1.5 rounded-full bg-terminal-green"
                       />
                     )}
                   </a>
@@ -198,7 +201,7 @@ export function Navbar() {
                 href="/cv.pdf"
                 download
                 onClick={closeMenu}
-                className="font-mono text-sm flex items-center gap-2 text-terminal-amber hover:text-terminal-amber-dim transition-colors"
+                className="flex items-center gap-2 font-mono text-sm text-terminal-amber transition-colors hover:text-terminal-amber-dim"
               >
                 <span aria-hidden="true">↓</span>
                 {t('downloadCv')}

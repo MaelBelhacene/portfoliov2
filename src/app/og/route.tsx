@@ -1,6 +1,5 @@
 import { ImageResponse } from 'next/og';
-
-export const runtime = 'edge';
+import { site } from '@/config/site';
 
 export async function GET() {
   return new ImageResponse(
@@ -10,75 +9,116 @@ export async function GET() {
           width: '100%',
           height: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
+          alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#000000',
-          padding: '80px',
           fontFamily: 'monospace',
           position: 'relative',
         }}
       >
-        {/* Grid background */}
+        {/* Grille phosphore */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             backgroundImage:
-              'linear-gradient(rgba(0,255,65,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,65,0.04) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
+              'linear-gradient(rgba(0,255,65,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,65,0.05) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
           }}
         />
-        {/* Prompt */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px' }}>
-          <span style={{ color: '#00ff41', fontSize: '20px' }}>$</span>
-          <span style={{ color: '#888888', fontSize: '20px' }}>whoami</span>
-        </div>
-        {/* Name */}
-        <div
-          style={{
-            color: '#c0c0c0',
-            fontSize: '72px',
-            fontWeight: 700,
-            lineHeight: 1.1,
-            marginBottom: '12px',
-          }}
-        >
-          Mael Belhacene
-        </div>
-        {/* Handle */}
-        <div style={{ color: '#00ff41', fontSize: '28px', marginBottom: '32px' }}>
-          @ghst.sec
-        </div>
-        {/* Role */}
-        <div style={{ color: '#ffb300', fontSize: '24px', marginBottom: '16px' }}>
-          Cybersécurité · GRC · Développement sécurisé
-        </div>
-        {/* Location */}
-        <div style={{ color: '#888888', fontSize: '18px' }}>
-          Grenoble, France
-        </div>
-        {/* Bottom border */}
+        {/* Halo vert */}
         <div
           style={{
             position: 'absolute',
-            bottom: '40px',
-            left: '80px',
-            right: '80px',
-            height: '1px',
-            backgroundColor: '#1a1a1a',
+            top: '-200px',
+            right: '-200px',
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(circle, rgba(0,255,65,0.12), transparent 70%)',
           }}
         />
+        {/* Fenêtre de terminal */}
         <div
           style={{
-            position: 'absolute',
-            bottom: '16px',
-            right: '80px',
-            color: '#1a1a1a',
-            fontSize: '14px',
+            display: 'flex',
+            flexDirection: 'column',
+            width: '1000px',
+            border: '1px solid #1f1f1f',
+            backgroundColor: 'rgba(8,8,8,0.9)',
+            boxShadow: '0 0 80px rgba(0,255,65,0.10)',
           }}
         >
-          maelbelhacene.fr
+          {/* Barre de titre */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '16px 20px',
+              borderBottom: '1px solid #1f1f1f',
+            }}
+          >
+            <div style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: '#ff5f56' }} />
+            <div style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: '#ffbd2e' }} />
+            <div style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: '#27c93f' }} />
+            <div style={{ color: '#666666', fontSize: 18, marginLeft: 12 }}>
+              {`mael@${site.handle}: ~`}
+            </div>
+          </div>
+          {/* Session */}
+          <div style={{ display: 'flex', flexDirection: 'column', padding: '48px 56px' }}>
+            <div style={{ display: 'flex', gap: 12, marginBottom: 28 }}>
+              <span style={{ color: '#00ff41', fontSize: 22 }}>$</span>
+              <span style={{ color: '#888888', fontSize: 22 }}>whoami</span>
+            </div>
+            <div
+              style={{
+                color: '#e8e8e8',
+                fontSize: 68,
+                fontWeight: 700,
+                lineHeight: 1.05,
+                marginBottom: 10,
+              }}
+            >
+              {site.name}
+            </div>
+            <div style={{ color: '#00ff41', fontSize: 26, marginBottom: 22 }}>
+              {`@${site.handle}`}
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                alignSelf: 'flex-start',
+                gap: 12,
+                marginBottom: 26,
+                border: '1px solid rgba(0,255,65,0.4)',
+                backgroundColor: 'rgba(0,255,65,0.06)',
+                padding: '10px 18px',
+                boxShadow: '0 0 24px rgba(0,255,65,0.15)',
+              }}
+            >
+              <div style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#00ff41' }} />
+              <div
+                style={{
+                  color: '#00ff41',
+                  fontSize: 20,
+                  fontWeight: 700,
+                  letterSpacing: 5,
+                  textTransform: 'uppercase',
+                }}
+              >
+                Ingénieur en cybersécurité
+              </div>
+            </div>
+            <div style={{ color: '#ffb300', fontSize: 24, marginBottom: 14 }}>
+              Cybersécurité · GRC · Développement sécurisé
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ color: '#888888', fontSize: 18 }}>Grenoble, France</div>
+              <div style={{ color: '#333333', fontSize: 16 }}>maelbelhacene.fr</div>
+            </div>
+          </div>
         </div>
       </div>
     ),

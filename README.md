@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Mael Belhacene (`~/ghst.sec`)
 
-## Getting Started
+Portfolio bilingue (FR/EN) à l'esthétique terminal : Next.js 16 (App Router, Turbopack),
+Tailwind CSS v4, next-intl v4, envoi d'email via Resend.
 
-First, run the development server:
+## Démarrer
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000 → redirige vers /fr
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Commande | Effet |
+|---|---|
+| `npm run dev` | Serveur de développement |
+| `npm run build` | Build de production (SSG `/fr` + `/en`) |
+| `npm start` | Serveur de production |
+| `npm test` | Suite Vitest (spec complète du site) |
+| `npm run test:watch` | Vitest en mode watch |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | `tsc --noEmit` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+```
+proxy.ts                      # routage i18n (convention Next 16, ex-middleware)
+src/config/site.ts            # identité du site — source unique (URL, socials, CV)
+src/lib/contact.ts            # validation du formulaire (pure, testée)
+src/i18n/                     # routing, request, navigation next-intl
+src/app/[locale]/             # layout (metadata, JSON-LD), page, 404 localisée
+src/app/api/contact/route.ts  # POST contact (validation + honeypot + Resend)
+src/app/og/route.tsx          # image OpenGraph générée (1200×630)
+src/components/ui/            # primitives : Section, SectionHeader, TerminalWindow,
+                              # Reveal, TypingEffect
+src/components/sections/      # Hero, About, Services, Skills, Tools, Experience,
+                              # Education, Projects, Contact
+messages/{fr,en}.json         # contenu i18n (structure vérifiée par les tests)
+tests/                        # 74 tests — invariants du site (voir REBUILD.md)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Variables d'environnement
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Rôle |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | URL canonique (défaut : `https://maelbelhacene.fr`) |
+| `RESEND_API_KEY` | Clé API Resend (formulaire de contact) |
+| `CONTACT_TO_EMAIL` | Destinataire des messages |
+| `RESEND_FROM_EMAIL` | Expéditeur vérifié (défaut : `onboarding@resend.dev`) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Sans configuration Resend, l'API `/api/contact` répond `503` proprement.
 
-## Deploy on Vercel
+## À compléter
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `public/cv.pdf` (les liens de téléchargement pointent dessus)
+- `contact.emailDisplay` dans `messages/*.json`
+- Variables Resend en production

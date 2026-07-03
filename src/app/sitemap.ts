@@ -1,32 +1,26 @@
 import type { MetadataRoute } from 'next';
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://maelbelhacene.fr';
+import { site } from '@/config/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const languages = {
+    fr: `${site.url}/fr`,
+    en: `${site.url}/en`,
+  };
+
   return [
     {
-      url: `${SITE_URL}/fr`,
+      url: `${site.url}/fr`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
-      alternates: {
-        languages: {
-          fr: `${SITE_URL}/fr`,
-          en: `${SITE_URL}/en`,
-        },
-      },
+      alternates: { languages },
     },
     {
-      url: `${SITE_URL}/en`,
+      url: `${site.url}/en`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
-      alternates: {
-        languages: {
-          fr: `${SITE_URL}/fr`,
-          en: `${SITE_URL}/en`,
-        },
-      },
+      alternates: { languages },
     },
   ];
 }
