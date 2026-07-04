@@ -226,7 +226,7 @@
     "sectionCmd": "nc -lv c0nt4ct.init",
     "sectionTitle": "Contact",
     "tagline": "Let's join forces.",
-    "description": "A project, a security need, a work-study/internship opportunity, or just a question? Drop me a line.",
+    "description": "A project, a security need, a professional collaboration, or just a question? Drop me a line.",
     "nameLabel": "Name",
     "namePlaceholder": "John Doe",
     "emailLabel": "Email",

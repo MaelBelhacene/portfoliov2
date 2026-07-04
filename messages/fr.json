@@ -226,7 +226,7 @@
     "sectionCmd": "nc -lv c0nt4ct.init",
     "sectionTitle": "Contact",
     "tagline": "Unissons nos forces.",
-    "description": "Un projet, un besoin en sécurité, une opportunité d'alternance/stage ou une simple question ? Écris-moi.",
+    "description": "Un projet, un besoin en sécurité, une collaboration professionnelle ou une simple question ? Écris-moi.",
     "nameLabel": "Nom",
     "namePlaceholder": "Jean Dupont",
     "emailLabel": "Email",
