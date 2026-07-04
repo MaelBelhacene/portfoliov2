@@ -95,7 +95,7 @@ describe('Experience (spec)', () => {
 });
 
 describe('Education (spec)', () => {
-  it('#f0rm4t10n : 2 diplômes, méthodologies, certifications à venir', () => {
+  it('#f0rm4t10n : 2 diplômes, méthodologies, certification United Nations', () => {
     const { container } = renderWithIntl(<Education />);
     expect(container.querySelector('section#f0rm4t10n')).not.toBeNull();
     for (const deg of fr.education.degrees) {
@@ -105,7 +105,15 @@ describe('Education (spec)', () => {
     for (const m of fr.education.methods) {
       expect(screen.getByText(m)).toBeInTheDocument();
     }
-    expect(screen.getByText(fr.education.certsPlaceholder)).toBeInTheDocument();
+
+    const [cert] = fr.education.certifications;
+    expect(screen.getByText(cert.title)).toBeInTheDocument();
+    expect(screen.getByText(cert.org)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(cert.credentialId))).toBeInTheDocument();
+    const certLink = screen.getByRole('link', { name: new RegExp(cert.title) });
+    expect(certLink).toHaveAttribute('href', cert.url);
+    expect(certLink).toHaveAttribute('target', '_blank');
+    expect(certLink).toHaveAttribute('rel', expect.stringContaining('noopener'));
   });
 });
 

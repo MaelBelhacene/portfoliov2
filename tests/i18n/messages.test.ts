@@ -93,7 +93,17 @@ describe('messages: contenu (spec)', () => {
     expect(fr.education.degrees).toHaveLength(2);
     for (const deg of fr.education.degrees) expect(deg.school).toBe('CESI');
     expect(fr.education.methods).toHaveLength(5);
-    expect(fr.education.certsPlaceholder).toBeTruthy();
+  });
+
+  it('education: certification United Nations', () => {
+    expect(fr.education.certifications).toHaveLength(1);
+    const [cert] = fr.education.certifications;
+    expect(cert.org).toBe('United Nations');
+    expect(cert.credentialId).toBe('1774172153MB');
+    expect(cert.url).toBe(
+      'https://elearningunodc.org/pluginfile.php/1/tool_certificate/issues/1765813175/1774172153MB.pdf',
+    );
+    expect(en.education.certifications[0].url).toBe(cert.url);
   });
 
   it('projects: 3 projets taggés', () => {

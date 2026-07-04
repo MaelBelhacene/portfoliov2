@@ -40,9 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# claude
+.claude/
+CLAUDE.md
 
-./AGENTS.md
-./CLAUDE.md
-./README.md
-./REBUILD.md
-./CLAUDE.md
+# markdown docs
+*.md

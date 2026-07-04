@@ -187,8 +187,17 @@
       }
     ],
     "certsTitle": "Certifications",
-    "certsPlaceholder": "[À COMPLÉTER]",
-    "certsNote": "Section intentionnellement vide — à renseigner dès l'obtention d'une certification.",
+    "certifications": [
+      {
+        "org": "United Nations",
+        "title": "Certificate - Cybercriminalité",
+        "issuedLabel": "Émise le",
+        "issued": "déc. 2025",
+        "credentialLabel": "Identifiant du diplôme",
+        "credentialId": "1774172153MB",
+        "url": "https://elearningunodc.org/pluginfile.php/1/tool_certificate/issues/1765813175/1774172153MB.pdf"
+      }
+    ],
     "methodsTitle": "Méthodologies & gestion de projet",
     "methods": ["Agile / Scrum", "Sprint planning", "Backlog & user stories", "Kanban", "Gestion de projet sécurité"]
   },

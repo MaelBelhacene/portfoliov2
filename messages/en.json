@@ -187,8 +187,17 @@
       }
     ],
     "certsTitle": "Certifications",
-    "certsPlaceholder": "[TO BE COMPLETED]",
-    "certsNote": "Intentionally left empty — will be filled once a certification is obtained.",
+    "certifications": [
+      {
+        "org": "United Nations",
+        "title": "Certificate - Cybercrime",
+        "issuedLabel": "Issued",
+        "issued": "Dec 2025",
+        "credentialLabel": "Credential ID",
+        "credentialId": "1774172153MB",
+        "url": "https://elearningunodc.org/pluginfile.php/1/tool_certificate/issues/1765813175/1774172153MB.pdf"
+      }
+    ],
     "methodsTitle": "Methodologies & project management",
     "methods": ["Agile / Scrum", "Sprint planning", "Backlog & user stories", "Kanban", "Security project management"]
   },

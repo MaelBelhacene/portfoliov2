@@ -3,11 +3,21 @@ import { Section } from '@/components/ui/Section';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 
 type Degree = { title: string; school: string; period: string; detail: string };
+type Certification = {
+  org: string;
+  title: string;
+  issuedLabel: string;
+  issued: string;
+  credentialLabel: string;
+  credentialId: string;
+  url: string;
+};
 
 export function Education() {
   const t = useTranslations('education');
   const degrees = t.raw('degrees') as Degree[];
   const methods = t.raw('methods') as string[];
+  const certifications = t.raw('certifications') as Certification[];
 
   return (
     <Section id="f0rm4t10n">
@@ -47,14 +57,47 @@ export function Education() {
         </ul>
       </div>
 
-      {/* Certifications à venir */}
-      <div className="border border-dashed border-terminal-border p-6">
-        <h3 className="mb-2 font-mono text-base font-bold text-terminal-muted">
+      {/* Certifications */}
+      <div className="border border-terminal-border p-6">
+        <h3 className="mb-4 font-mono text-base font-bold text-terminal-bright">
           {t('certsTitle')}
         </h3>
-        <p className="cursor-blink inline-block font-mono text-sm text-terminal-green">
-          {t('certsPlaceholder')}
-        </p>
+        <ul className="space-y-3">
+          {certifications.map((cert) => (
+            <li key={cert.credentialId}>
+              <a
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 border border-terminal-border p-5 transition-all hover:border-terminal-green hover:shadow-[0_0_24px_rgba(0,255,65,0.08)]"
+              >
+                <div
+                  aria-hidden="true"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center border border-terminal-border font-mono text-xs font-bold tracking-wider text-terminal-muted transition-colors group-hover:border-terminal-green group-hover:text-terminal-green"
+                  title={`Logo de ${cert.org}`}
+                >
+                  UN
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="font-mono text-xs text-terminal-green">{cert.org}</div>
+                  <div className="font-mono text-sm font-bold text-terminal-bright md:text-base">
+                    {cert.title}
+                  </div>
+                  <div className="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 font-mono text-xs text-terminal-muted">
+                    <span>{cert.issuedLabel} {cert.issued}</span>
+                    <span>{cert.credentialLabel} : {cert.credentialId}</span>
+                  </div>
+                </div>
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 font-mono text-terminal-muted transition-colors group-hover:text-terminal-green"
+                >
+                  ↗
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </Section>
   );
