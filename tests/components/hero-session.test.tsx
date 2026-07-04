@@ -10,7 +10,6 @@ const PROPS = {
   prompt: 'whoami',
   name: 'Mael Belhacene',
   title: 'Ingénieur en cybersécurité',
-  handle: 'ghst.sec',
   role: 'Cybersécurité · GRC',
   location: 'Grenoble, France',
   typingLine: 'Go!',

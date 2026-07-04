@@ -31,7 +31,6 @@ export function Hero() {
             prompt={t('prompt')}
             name={t('name')}
             title={t('title')}
-            handle={t('handle')}
             role={t('role')}
             location={t('location')}
             typingLine={t('typingLine')}

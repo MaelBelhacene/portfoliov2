@@ -16,7 +16,6 @@ export type HeroSessionProps = {
   prompt: string;
   name: string;
   title: string;
-  handle: string;
   role: string;
   location: string;
   typingLine: string;
@@ -36,7 +35,6 @@ export function HeroSession({
   prompt,
   name,
   title,
-  handle,
   role,
   location,
   typingLine,
@@ -102,20 +100,11 @@ export function HeroSession({
         {name}
       </h1>
 
-      <div className={`flex flex-wrap items-center gap-x-5 gap-y-3 ${line('delay-150')}`}>
-        <div className="inline-flex items-center gap-2.5 border border-terminal-green/40 bg-terminal-green/5 px-3.5 py-1.5 shadow-[0_0_24px_rgba(0,255,65,0.15)]">
-          <span
-            className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-terminal-green"
-            aria-hidden="true"
-          />
-          <span className="glow-green text-xs font-bold tracking-[0.25em] text-terminal-green uppercase md:text-sm">
-            {title}
-          </span>
-        </div>
-        <div className="glow-green text-lg text-terminal-green md:text-xl">
-          @{handle}
-        </div>
-      </div>
+      <p
+        className={`font-mono text-sm font-semibold tracking-[0.15em] text-terminal-green/90 uppercase md:text-base ${line('delay-150')}`}
+      >
+        {title}
+      </p>
 
       <div
         className={`glow-line h-px w-24 origin-left bg-gradient-to-r from-terminal-green to-transparent transition-transform duration-700 delay-300 ${

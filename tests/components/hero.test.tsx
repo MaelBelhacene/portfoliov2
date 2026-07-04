@@ -15,13 +15,19 @@ describe('Hero (spec)', () => {
     expect(container.querySelector('section#whoami')).not.toBeNull();
   });
 
-  it('h1 = Mael Belhacene, titre, handle, rôle et localisation', () => {
+  it('h1 = Mael Belhacene, titre, rôle et localisation', () => {
     renderWithIntl(<Hero />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(fr.hero.name);
     expect(screen.getByText(fr.hero.title)).toBeInTheDocument();
-    expect(screen.getAllByText(new RegExp(fr.hero.handle)).length).toBeGreaterThan(0);
     expect(screen.getByText(new RegExp(fr.hero.role))).toBeInTheDocument();
     expect(screen.getByText(new RegExp(fr.hero.location))).toBeInTheDocument();
+  });
+
+  it('le handle n’apparaît que dans la barre de titre du terminal', () => {
+    renderWithIntl(<Hero />);
+    // Toujours présent (fenêtre de terminal), mais plus en "@handle" dans la session
+    expect(screen.getAllByText(new RegExp(fr.hero.handle)).length).toBeGreaterThan(0);
+    expect(screen.queryByText(`@${fr.hero.handle}`)).toBeNull();
   });
 
   it('affiche le prompt whoami', () => {
