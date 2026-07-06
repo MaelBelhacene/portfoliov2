@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { TerminalWindow } from '@/components/ui/TerminalWindow';
+import { Hero3D } from '@/components/three/Hero3D';
 import { HeroSession } from './HeroSession';
 import { site } from '@/config/site';
 
@@ -24,6 +25,9 @@ export function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(255,179,0,0.05),transparent_70%)]"
       />
+
+      {/* Globe 3D décoratif */}
+      <Hero3D className="pointer-events-none absolute top-1/2 -right-32 hidden h-[36rem] w-[36rem] -translate-y-1/2 opacity-70 lg:block xl:-right-16" />
 
       <div className="relative mx-auto w-full max-w-6xl pt-24 pb-16">
         <TerminalWindow title={`mael@${site.handle}: ~`}>
